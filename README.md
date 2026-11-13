@@ -34,7 +34,7 @@ Copy this folder into your Codex skills directory:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R geo-seo-codex-skill ~/.codex/skills/geo-seo
+cp -R ./geo-seo ~/.codex/skills/geo-seo
 ```
 
 Then restart Codex so the skill is discovered.
@@ -73,6 +73,15 @@ geo-seo/
     ├── implementation-patterns.md
     └── report-template.md
 ```
+
+## Enhanced release
+
+The enhanced package adds native GA4 AI Assistant reporting guidance, a dependency-free referral classifier with 20 behavioral checks, consent-aware integration guidance, evidence/coverage reporting, and safeguards against false domain matches and unsupported AI visibility claims. It is an extension of the public MIT skill, not exclusive source code.
+
+Audits use the host agent's browser/fetch tools and need no paid API. Code implementation requires repository access; GA4 configuration needs the buyer's own authorized property access. Optional classifier execution needs Node.js 18+. Agensi tool calls are separate, optional paid services requiring buyer approval; no API credit is bundled.
+
+Run classifier checks: `node --test tests/ai-referral.test.mjs`.
+The pure classifier is tested locally; it does not install tags or transmit events. Full website/CMP integration must be validated in the target project. Cross-agent execution has not been independently certified.
 
 ## Attribution
 
