@@ -17,7 +17,12 @@ This skill is adapted for Codex from the concepts in `zubair-trabzada/geo-seo-cl
 - Do not spawn subagents unless the user explicitly asks for agents or parallel delegation.
 - Prefer implementation when the user owns the repo and asks to improve/fix, not just advice.
 - For OpenAI bot behavior, use current official OpenAI documentation if precise bot recommendations matter.
-- When reporting findings, separate confirmed facts from inferences.
+- When reporting findings, separate confirmed facts from inferences. Attach a URL/file, observation, impact, fix and validation method to each finding. Report blocked or unavailable checks as unverified; do not infer site defects from a tool error.
+- Actual AI visibility requires an observed answer/citation, query, engine, locale and date. Readiness scores are not visibility measurements. Show sample coverage and mark unavailable checks N/A.
+- llms.txt is optional; its absence is not a critical SEO defect. Google requires no special AI text file or schema for AI Overviews/AI Mode. Never guarantee rankings, indexing or citations.
+- Do not label Google organic referrals or direct-traffic spikes as confirmed AI traffic. Referrers and tags are incomplete and can be spoofed.
+- In Agensi, discover optional tools from the available catalog. Show the data to be sent, tool, price and scope and obtain buyer approval before paid calls. Never invent tool IDs/prices or assume connected accounts. Basic audits require no paid API.
+- Preserve existing consent and analytics behavior. Do not deploy website or GTM changes without authorization.
 
 ## Task Router
 
@@ -60,49 +65,7 @@ Read references only as needed:
 
 ## AI Referral Tracking In GA4
 
-Use this section when the user asks to track traffic from ChatGPT, Perplexity, Gemini, Claude, Copilot, AI Overviews, or other LLM/search assistants.
-
-Important assumptions:
-
-- AI referral attribution is incomplete. Some tools send `utm_source` or referrer values, while others remove referrer data and appear as `Direct`.
-- Do not rely only on automatic `utm_source=chatgpt.com`; treat it as one signal among referrer, landing page, server logs, and direct-traffic spikes.
-- Keep canonical URLs clean. Add UTM parameters only to links intentionally shared in campaigns, prompts, directories, or controlled content.
-
-Recommended implementation:
-
-- Detect AI traffic client-side from `utm_source`, `utm_medium`, `utm_campaign`, `source`, `ref`, and `document.referrer`.
-- Track a GA4 event such as `ai_referral_detected` with parameters:
-  - `ai_source`
-  - `ai_source_label`
-  - `ai_detected_by`
-  - `page_location`
-  - `referrer`
-  - `utm_source`
-  - `utm_medium`
-  - `utm_campaign`
-- Persist detection in `sessionStorage` so the site can preserve context after navigation without rewriting canonical URLs.
-- Optionally show a small contextual note on the landing page when the visitor appears to come from an AI assistant.
-
-GA4 reporting setup:
-
-- In Traffic acquisition, switch the dimension to `Session source / medium` and search for values like `chatgpt`, `perplexity`, `gemini`, `claude`, `copilot`, or `openai`.
-- Create an Exploration with `Session source`, `Session source / medium`, and `Landing page + query string`; use metrics such as Sessions, Engagement rate, Active users, and Key events.
-- Use a regex filter such as:
-
-```text
-.*(chatgpt\.com|chat\.openai\.com|openai\.com|gemini\.google\.com|perplexity\.ai|copilot\.microsoft\.com|claude\.ai|anthropic\.com|you\.com).*
-```
-
-- Create a custom channel group named `AI Traffic`; place it above generic `Referral` so AI sources are not merged into normal referral traffic.
-- Review direct-traffic spikes and landing pages cited by AI tools, because untagged AI clicks can look like direct visits.
-
-Suggested controlled UTM format:
-
-```text
-https://example.com/?utm_source=chatgpt&utm_medium=ai_referral&utm_campaign=llm_visibility
-```
-
-Reference concept: Rankshift, “How to Track ChatGPT Referrals in GA4”, published January 26, 2026 and updated January 27, 2026.
+Read `references/ga4-ai-referrals.md` for native GA4 reporting, the optional tested classifier, integration and verification. Start with the native AI Assistant channel before proposing custom tracking. Do not overwrite existing campaign attribution. A diagnostic event does not modify session attribution.
 
 5. **Prioritize**
    - `P0`: prevents indexing/crawling or misidentifies the entity.

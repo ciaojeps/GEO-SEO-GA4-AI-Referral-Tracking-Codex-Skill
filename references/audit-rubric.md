@@ -1,6 +1,6 @@
 # GEO SEO Audit Rubric
 
-Use this rubric for quick or full audits. Adjust weights when the user has a specific goal.
+Use this heuristic rubric only when scoring is useful. Adjust weights for the goal. Record sampled pages and checked criteria. Mark unavailable checks N/A, disclose coverage, and omit an overall score if missing evidence would make it misleading. This measures readiness, not actual rankings or AI citations.
 
 ## Default Score Weights
 
@@ -86,7 +86,7 @@ JSON-LD should be valid, server-rendered when possible, and consistent with visi
 
 ## llms.txt
 
-Recommend `llms.txt` when the site has clear canonical pages worth presenting to AI systems.
+Treat `llms.txt` as optional when clear canonical pages are worth presenting to AI systems. Do not penalize its absence as an indexing or AI visibility failure.
 
 Good `llms.txt`:
 - Starts with `# Site or Entity Name`.

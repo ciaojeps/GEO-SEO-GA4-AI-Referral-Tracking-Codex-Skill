@@ -99,30 +99,11 @@ Allow: /
 Sitemap: https://example.com/sitemap.xml
 ```
 
-If explicitly allowing AI search bots:
-
-```txt
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-```
-
-Do not change training/data-use policy without user intent. Explain tradeoffs when relevant.
+Review each crawler's current official purpose before editing bot-specific rules. Search crawling, user-triggered retrieval and model training have separate controls. Never bulk-allow training bots as an SEO fix. A specific user-agent group can override the wildcard group: preserve protected paths when adding a group.
 
 ## llms.txt
 
-Create `/llms.txt` in `public/` or static output folder.
+Optionally create `/llms.txt` in `public/` or the static output folder when useful for canonical content discovery. It is not required for Google AI features and does not guarantee citations.
 
 Template:
 
